@@ -11,7 +11,7 @@ describe GildedRose do
     end
 
     it 'lowers sell_in and quality by 1 each day' do
-      items = [Item.new("Beef", 10, 10)]
+      items = [Item.new("+5 Dexterity Vest", 10, 10)]
       subject = GildedRose.new(items)
       three_days_pass(subject)
       expect(items[0].sell_in).to eq(7)
@@ -19,7 +19,7 @@ describe GildedRose do
     end
 
     it 'degrades quality twice as fast after the sell by date' do
-      items = [Item.new("Bread", 1, 10)]
+      items = [Item.new("+5 Dexterity Vest", 1, 10)]
       subject = GildedRose.new(items)
       three_days_pass(subject)
       expect(items[0].quality).to eq(5)
@@ -50,7 +50,7 @@ describe GildedRose do
 
     describe 'Sulfuras, Hand of Ragnaros' do
       it 'does not decrease the quality of Sulfuras' do
-        items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
+        items = [Item.new("Sulfuras, Hand of Ragnaros", 2, 80)]
         subject = GildedRose.new(items)
         three_days_pass(subject)
         expect(items[0].quality).to eq(80)
