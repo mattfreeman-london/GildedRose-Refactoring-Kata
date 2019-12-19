@@ -2,6 +2,33 @@
 
 This repo contains my code for the Gilded Rose Refactoring Kata, in Ruby, and using Rspec for testing. This was done as part of the Makers Academy Course, October 2019 cohort, in Week 10 (Tech Tests). 
 
+The approach was firstly to write tests for all pre-existing behaviours and ensure they pass. The next step is to refactor the existing code to be clearer, whilst retaining all functionality. 
+
+Whilst writing the tests, I made sure to order them in the same order as the documentation. For the specific items that had different rules (such as the Aged Brie) I used a separate 'describe' block for clarity. 
+
+To run the tests, simple enter ```rspec``` into the command line. Results will show as follows:
+
+```
+GildedRose
+  #update_quality
+    does not change the name
+    lowers sell_in and quality by 1 each day
+    degrades quality twice as fast after the sell by date
+    does not decrease quality below 0
+    does not increase quality beyond 50
+    Aged Brie
+      increases the quality of Aged Brie over time
+    Sulfuras, Hand of Ragnaros
+      does not decrease the quality of Sulfuras
+    Backstage passes
+      Quality increases by 2 when there are less than 10 days to the concert
+      Quality increases by 3 when there are less than 5 days to the concert
+      Quality drops to zero after the concert
+      Quality cannot increase over 50
+
+11 examples, 0 failures
+```
+
 ## (Original author Emily Bache, text from her original README below):
 
 This Kata was originally created by Terry Hughes (http://twitter.com/TerryHughes). It is already on GitHub [here](https://github.com/NotMyself/GildedRose). See also [Bobby Johnson's description of the kata](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/).
