@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'gilded_rose'
 
 def three_days_pass(gilded_rose)
