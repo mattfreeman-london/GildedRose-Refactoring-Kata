@@ -78,6 +78,13 @@ describe GildedRose do
         three_days_pass(subject)
         expect(items[0].quality).to eq(0)
       end
+
+      it 'Quality cannot increase over 50' do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 49)]
+        subject = GildedRose.new(items)
+        three_days_pass(subject)
+        expect(items[0].quality).to eq(50)
+      end
     end
   end
 end
