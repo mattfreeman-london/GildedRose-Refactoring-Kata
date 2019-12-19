@@ -57,6 +57,27 @@ describe GildedRose do
       end
     end
 
-    describe ''
+    describe 'Backstage passes' do
+      it 'Quality increases by 2 when there are less than 10 days to the concert' do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 20)]
+        subject = GildedRose.new(items)
+        three_days_pass(subject)
+        expect(items[0].quality).to eq(26)
+      end
+
+      it 'Quality increases by 3 when there are less than 5 days to the concert' do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20)]
+        subject = GildedRose.new(items)
+        three_days_pass(subject)
+        expect(items[0].quality).to eq(29)
+      end
+
+      it 'Quality drops to zero after the concert' do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 2, 20)]
+        subject = GildedRose.new(items)
+        three_days_pass(subject)
+        expect(items[0].quality).to eq(0)
+      end
+    end
   end
 end
