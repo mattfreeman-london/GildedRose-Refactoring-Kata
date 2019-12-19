@@ -1,5 +1,5 @@
 require 'gilded_rose'
-require 'helper_code'
+require_relative 'helper_code'
 
 describe GildedRose do
 
@@ -10,11 +10,20 @@ describe GildedRose do
       expect(items[0].name).to eq "foo"
     end
 
+    it 'lowers sell_in and quality by 1 each day' do
+      items = [Item.new("Beef", 10, 10)]
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      expect(items[0].sell_in).to eq(7)
+      expect(items[0].quality).to eq(7)
+    end
+
     it 'increases the quality of Aged Brie over time' do
       items = [Item.new("Aged Brie", 2, 0)]
-      GildedRose.new(items).update_quality()
-      GildedRose.new(items).update_quality()
-      GildedRose.new(items).update_quality()
+        GildedRose.new(items).update_quality()
+        GildedRose.new(items).update_quality()
+        GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(4)
     end
 
