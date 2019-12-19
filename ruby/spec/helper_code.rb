@@ -1,7 +1,5 @@
 require 'gilded_rose'
 
-def three_days_pass
-  GildedRose.new(items).update_quality()
-  GildedRose.new(items).update_quality()
-  GildedRose.new(items).update_quality()
+def three_days_pass(gilded_rose)
+  3.times { gilded_rose.update_quality }
 end
