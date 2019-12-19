@@ -24,6 +24,14 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(80)
     end
+
+    it 'does not decrease quality below 0' do
+      items = [Item.new("Elixir of the Mongoose", 1, 1)]
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(0)
+    end
   end
 
 end
