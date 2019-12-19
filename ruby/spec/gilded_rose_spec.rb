@@ -19,20 +19,12 @@ describe GildedRose do
       expect(items[0].quality).to eq(7)
     end
 
-    it 'increases the quality of Aged Brie over time' do
-      items = [Item.new("Aged Brie", 2, 0)]
-        GildedRose.new(items).update_quality()
-        GildedRose.new(items).update_quality()
-        GildedRose.new(items).update_quality()
-      expect(items[0].quality).to eq(4)
-    end
-
-    it 'does not decrease the quality of Sulfuras' do
-      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
+    it 'degrades quality twice as fast after the sell by date' do
+      items = [Item.new("Bread", 1, 10)]
       GildedRose.new(items).update_quality()
       GildedRose.new(items).update_quality()
       GildedRose.new(items).update_quality()
-      expect(items[0].quality).to eq(80)
+      expect(items[0].quality).to eq(5)
     end
 
     it 'does not decrease quality below 0' do
@@ -43,6 +35,14 @@ describe GildedRose do
       expect(items[0].quality).to eq(0)
     end
 
+    it 'increases the quality of Aged Brie over time' do
+      items = [Item.new("Aged Brie", 2, 0)]
+        GildedRose.new(items).update_quality()
+        GildedRose.new(items).update_quality()
+        GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(4)
+    end
+
     it 'does not increase quality beyond 50' do
       items = [Item.new("Aged Brie", 10, 49)]
       GildedRose.new(items).update_quality()
@@ -51,12 +51,12 @@ describe GildedRose do
       expect(items[0].quality).to eq(50)
     end
 
-    it 'degrades quality twice as fast after the sell by date' do
-      items = [Item.new("Bread", 1, 10)]
+    it 'does not decrease the quality of Sulfuras' do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
       GildedRose.new(items).update_quality()
       GildedRose.new(items).update_quality()
       GildedRose.new(items).update_quality()
-      expect(items[0].quality).to eq(5)
+      expect(items[0].quality).to eq(80)
     end
   end
 
