@@ -1,4 +1,5 @@
 require 'gilded_rose'
+require 'helper_code'
 
 describe GildedRose do
 
@@ -31,6 +32,22 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq(0)
+    end
+
+    it 'does not increase quality beyond 50' do
+      items = [Item.new("Aged Brie", 10, 49)]
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(50)
+    end
+
+    it 'degrades quality twice as fast after the sell by date' do
+      items = [Item.new("Bread", 1, 10)]
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq(5)
     end
   end
 
