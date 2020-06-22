@@ -50,16 +50,8 @@ class GildedRose
     end
   end
 
-  def update_quality()
-    reduce_sell_in()
+  def adjust_based_on_sell_in()
     @items.each do |item|
-      
-      if item.name != 'Aged Brie' and item.name != 'Backstage passes to a TAFKAL80ETC concert'
-        adjust_regular_stock_quality()
-      else
-        adjust_concert_tickets()
-      end
-      
       if item.sell_in < 0
         if item.name != 'Aged Brie'
           
@@ -74,14 +66,29 @@ class GildedRose
           else
             item.quality = item.quality - item.quality
           end
-
+  
         else
           if item.quality < 50
             item.quality = item.quality + 1
           end
         end
-
+      
       end
+    end
+    
+  end
+
+  def update_quality()
+    reduce_sell_in()
+    @items.each do |item|
+      
+      if item.name != 'Aged Brie' and item.name != 'Backstage passes to a TAFKAL80ETC concert'
+        adjust_regular_stock_quality()
+      else
+        adjust_concert_tickets()
+      end
+      
+      adjust_based_on_sell_in()  
 
     end
   end
