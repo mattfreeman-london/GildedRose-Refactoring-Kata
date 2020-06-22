@@ -15,9 +15,16 @@ class GildedRose
     end
   end
 
-  def adjust_regular_stock()
+  def adjust_regular_stock_quality()
+    @items.each do |item|
+      if item.quality > 0
+        if item.name != 'Sulfuras, Hand of Ragnaros'
+          item.quality = item.quality - 1
+        end
+      end
+    end
   end
-  
+
 
   def adjust_concert_tickets()
     @items.each do |item|
@@ -48,12 +55,7 @@ class GildedRose
     @items.each do |item|
       
       if item.name != 'Aged Brie' and item.name != 'Backstage passes to a TAFKAL80ETC concert'
-        if item.quality > 0
-          if item.name != 'Sulfuras, Hand of Ragnaros'
-            item.quality = item.quality - 1
-          end
-        end
-      
+        adjust_regular_stock_quality()
       else
         adjust_concert_tickets()
       end
